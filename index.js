@@ -9,7 +9,11 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors()); // Enable CORS
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true, // This is important for sending cookies over CORS
+  }));
+
 app.use(express.json());
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies
 
@@ -18,5 +22,10 @@ connectDB();
 
 app.use('/users', userRouter);
 app.use('/crypto', cryptoRouter);
+
+app.use((error, req, res, next) => {
+    console.error(error.stack);
+    res.status(500).send('Something broke!');
+  });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
