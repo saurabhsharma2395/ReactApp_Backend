@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 module.exports = async (req, res, next) => {
+  console.log('Cookies: ', req.cookies);
+  console.log('Headers: ', req.headers);
   try {
     const token = req.cookies['token'];
     if (!token) {
