@@ -1,5 +1,5 @@
 const express = require('express');
-const userModel = require("../models/user");
+const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require('dotenv').config();
@@ -25,7 +25,7 @@ exports.getUser = async (req, res) => {
 // Controller function for user signup
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
-
+console.log("body", req.body);
   try {
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -35,9 +35,10 @@ exports.signup = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 12);
 
       const result = await User.create({
+        username,
           email,
           password: hashedPassword,
-          username,
+          
       });
 
       const token = jwt.sign({ email: result.email, id: result._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
