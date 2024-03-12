@@ -1,5 +1,9 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const app = express();
+app.use(cookieParser());
 
 module.exports = async (req, res, next) => {
   console.log('Cookies: ', req.cookies);
