@@ -16,6 +16,6 @@ userRouter.post('/signin', signin);
 
 userRouter.post('/logout', logout);
 
-userRouter.get('/user', authMiddleware, getUser);
+userRouter.get('/user', getUser);
 
 module.exports = userRouter;
