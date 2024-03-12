@@ -5,7 +5,14 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();
 const bodyParser = require('body-parser');
 
-exports.use(bodyParser.json);
+// Initialize Express app
+const app = express();
+
+// Body parser middleware to parse JSON bodies
+app.use(bodyParser.json());
+
+// Body parser middleware to handle URL-encoded data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 exports.getUser = async (req, res) => {
   try {
