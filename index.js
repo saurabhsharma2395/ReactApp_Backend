@@ -10,16 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Dynamically allow requesting origin if credentials are needed
-app.use(cors((req, callback) => {
-  let corsOptions;
-  // Check the incoming request origin and decide if it should be allowed
-  const allowList = ['https://crypto-updated.vercel.app']; // Add your specific allowed origins here
-  if (allowList.indexOf(req.header('Origin')) !== -1 || !req.header('Origin')) {
-      corsOptions = { origin: true, credentials: true }; // Reflect the request origin and allow credentials
-  } else {
-      corsOptions = { origin: false }; // Disable CORS for this request
-  }
-  callback(null, corsOptions); // Callback expects two parameters: error and options
+app.use(cors({
+  origin: 'https://crypto-updated.vercel.app',
+  credentials: true, 
 }));
 
 app.use(express.json());

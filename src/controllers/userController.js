@@ -45,8 +45,6 @@ console.log("body", req.body);
 
       res.cookie('token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
           maxAge: 3600000 // 1 hour
       });
 
@@ -76,8 +74,6 @@ exports.signin = async (req, res) => {
 
       res.cookie('token', token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
           maxAge: 3600000
       });
 
