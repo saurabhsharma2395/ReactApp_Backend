@@ -4,9 +4,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+
 
 // Initialize Express app
 const app = express();
+
+app.use(cookieParser());
 
 // Body parser middleware to parse JSON bodies
 app.use(bodyParser.json());
