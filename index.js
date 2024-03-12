@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://crypto-updated.vercel.app/',
     credentials: true, // This is important for sending cookies over CORS
   }));
 
