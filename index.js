@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 // Dynamically allow requesting origin if credentials are needed
 app.use(cors({
-  origin: 'https://crypto-updated.vercel.app',
+  origin: ['https://crypto-updated.vercel.app',
+  'https://crypto-angular-project.vercel.app/'],
   credentials: true, 
 }));
 
